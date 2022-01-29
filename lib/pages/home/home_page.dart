@@ -8,7 +8,6 @@ import 'dart:convert';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:myapp/pages/home/widgets/catalog_header.dart';
-import 'package:myapp/widgets/themes.dart';
 import 'package:myapp/models/catalog.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,11 +38,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, MyRoute.cartRoute),
-        backgroundColor: MyTheme.darkBlueColor,
-        child: const Icon(CupertinoIcons.cart),
+        backgroundColor: context.theme.colorScheme.secondary,
+        child: const Icon(CupertinoIcons.cart, color: Colors.white),
       ),
       body: SafeArea(
         child: Container(

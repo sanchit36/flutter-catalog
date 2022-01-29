@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:myapp/widgets/themes.dart';
-
 class CatlogHeader extends StatelessWidget {
   const CatlogHeader({Key? key}) : super(key: key);
 
@@ -12,7 +10,12 @@ class CatlogHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Catalog App".text.xl5.bold.color(MyTheme.darkBlueColor).make(),
+        "Catalog App"
+            .text
+            .xl5
+            .bold
+            .color(context.theme.colorScheme.secondary)
+            .make(),
         "Treading Products".text.xl2.make(),
       ],
     );
