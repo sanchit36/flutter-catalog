@@ -13,6 +13,7 @@ class HomeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text(catalog.name),
       ),
       backgroundColor: MyTheme.creamColor,
@@ -25,15 +26,13 @@ class HomeDetailPage extends StatelessWidget {
             "\$ ${catalog.price}".text.bold.xl4.make(),
             ElevatedButton(
               onPressed: () {},
-              child: "Buy".text.xl2.make(),
+              child: "Add to cart".text.xl.make(),
               style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all(MyTheme.darkBlueColor),
-                shape: MaterialStateProperty.all(
-                  StadiumBorder(),
-                ),
+                shape: MaterialStateProperty.all(StadiumBorder()),
               ),
-            ).wh(120, 50)
+            ).h(50)
           ],
         ).p(40),
       ),
@@ -53,18 +52,25 @@ class HomeDetailPage extends StatelessWidget {
                 child: Container(
                   width: context.screenWidth,
                   color: Colors.white,
-                  child: Column(
-                    children: [
-                      catalog.name.text.xl4
-                          .color(MyTheme.darkBlueColor)
-                          .bold
-                          .make(),
-                      catalog.desc.text.xl
-                          .textStyle(context.captionStyle!)
-                          .make(),
-                      10.heightBox,
-                    ],
-                  ).py64(),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        catalog.name.text.xl4
+                            .color(MyTheme.darkBlueColor)
+                            .bold
+                            .make(),
+                        catalog.desc.text.xl
+                            .textStyle(context.captionStyle!)
+                            .make(),
+                        10.heightBox,
+                        "Lorem dolores at erat rebum ipsum dolore et. Duo amet aliquyam voluptua kasd elitr sit duo kasd. Dolores no justo dolor takimata. Sed invidunt nonumy amet sanctus vero gubergren voluptua duo amet. Accusam elitr clita est diam sea dolor gubergren diam eirmod. Diam duo lorem accusam no ipsum diam dolor."
+                            .text
+                            .textStyle(context.captionStyle!)
+                            .make()
+                            .p16()
+                      ],
+                    ).py64(),
+                  ),
                 ),
               ),
             )
