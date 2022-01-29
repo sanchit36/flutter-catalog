@@ -1,3 +1,17 @@
+class Catalog {
+  static final items = [
+    Item(
+      id: "001",
+      name: "iPhone 12 Pro",
+      description: "Apple iPhone 12 Pro generation",
+      price: 999,
+      color: "#33505a",
+      image:
+          "https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/Apple-iPhone-12-Pro/Silver/Apple-iPhone-12-Pro-Silver-frontimage.png",
+    )
+  ];
+}
+
 class Item {
   final String id;
   final String name;
@@ -15,15 +29,3 @@ class Item {
     required this.image,
   });
 }
-
-final products = [
-  Item(
-    id: "001",
-    name: "iPhone 12 Pro",
-    description: "Apple iPhone 12 Pro generation",
-    price: 999,
-    color: "#33505a",
-    image:
-        "https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/Apple-iPhone-12-Pro/Silver/Apple-iPhone-12-Pro-Silver-frontimage.png",
-  )
-];
