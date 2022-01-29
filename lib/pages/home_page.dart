@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myapp/widgets/themes.dart';
 import 'dart:convert';
+
+import 'package:velocity_x/velocity_x.dart';
 
 import 'package:myapp/models/catalog.dart';
 import 'package:myapp/widgets/drawer.dart';
@@ -34,23 +37,111 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Catalog App'),
+      backgroundColor: MyTheme.creamColor,
+      body: SafeArea(
+        child: Container(
+          padding: Vx.m32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CatlogHeader(),
+              if (Catalog.items.isNotEmpty)
+                const CatalogList().expand()
+              else
+                const Center(child: CircularProgressIndicator())
+            ],
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: (Catalog.items.isNotEmpty)
-            ? ListView.builder(
-                itemCount: Catalog.items.length,
-                itemBuilder: (context, index) => ItemWidget(
-                  item: Catalog.items[index],
-                ),
-              )
-            : const Center(
-                child: CircularProgressIndicator(),
-              ),
-      ),
-      drawer: MyDrawer(),
     );
+  }
+}
+
+class CatlogHeader extends StatelessWidget {
+  const CatlogHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        "Catalog App".text.xl5.bold.color(MyTheme.darkBlueColor).make(),
+        "Treading Products".text.xl2.make(),
+      ],
+    );
+  }
+}
+
+class CatalogList extends StatelessWidget {
+  const CatalogList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: Catalog.items.length,
+      itemBuilder: (context, index) {
+        final catalog = Catalog.items[index];
+        return CatalogItem(catalog: catalog);
+      },
+    );
+  }
+}
+
+class CatalogItem extends StatelessWidget {
+  final Item catalog;
+
+  const CatalogItem({Key? key, required this.catalog}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return VxBox(
+      child: Row(
+        children: [
+          CatalogImage(image: catalog.image),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                catalog.name.text.lg.color(MyTheme.darkBlueColor).bold.make(),
+                catalog.desc.text.textStyle(context.captionStyle!).make(),
+                10.heightBox,
+                ButtonBar(
+                  buttonPadding: EdgeInsets.zero,
+                  alignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    "\$ ${catalog.price}".text.bold.xl.make(),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: "Buy".text.make(),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(MyTheme.darkBlueColor),
+                          shape: MaterialStateProperty.all(
+                            StadiumBorder(),
+                          )),
+                    )
+                  ],
+                ).pOnly(right: 8)
+              ],
+            ),
+          )
+        ],
+      ),
+    ).white.rounded.square(150).make().py16();
+  }
+}
+
+class CatalogImage extends StatelessWidget {
+  final String image;
+
+  const CatalogImage({Key? key, required this.image}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(
+      image,
+    ).box.rounded.p8.color(MyTheme.creamColor).make().p16().w40(context);
   }
 }
