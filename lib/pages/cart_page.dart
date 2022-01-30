@@ -35,11 +35,16 @@ class _CartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}"
-              .text
-              .xl4
-              .color(context.theme.colorScheme.secondary)
-              .make(),
+          VxBuilder(
+            builder: (context, _, _status) {
+              return "\$${_cart.totalPrice}"
+                  .text
+                  .xl4
+                  .color(context.theme.colorScheme.secondary)
+                  .make();
+            },
+            mutations: const {RemoveMutation},
+          ),
           ElevatedButton(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -71,14 +76,12 @@ class _CartList extends StatelessWidget {
         : ListView.builder(
             itemCount: _cart.items.length,
             itemBuilder: (context, index) => ListTile(
-              leading: const Icon(Icons.done),
               trailing: IconButton(
-                onPressed: () {
-                  RemoveMutation(_cart.items[index]);
-                },
+                onPressed: () => RemoveMutation(_cart.items[index]),
                 icon: const Icon(Icons.remove_circle_outline),
               ),
               title: _cart.items[index].name.text.make(),
+              subtitle: "\$${_cart.items[index].price}".text.make(),
             ),
           );
   }
