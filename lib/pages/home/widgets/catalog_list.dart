@@ -4,7 +4,6 @@ import 'package:myapp/pages/home/widgets/catalog_image.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:myapp/models/catalog.dart';
-import 'package:myapp/widgets/themes.dart';
 
 class CatalogList extends StatelessWidget {
   const CatalogList({Key? key}) : super(key: key);
@@ -15,14 +14,12 @@ class CatalogList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: Catalog.items.length,
       itemBuilder: (context, index) {
-        final catalog = Catalog.items[index];
+        final catalog = Catalog.getByPosition(index);
         return InkWell(
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeDetailPage(
-                catalog: catalog,
-              ),
+              builder: (context) => HomeDetailPage(catalog: catalog),
             ),
           ),
           child: CatalogItem(catalog: catalog),
