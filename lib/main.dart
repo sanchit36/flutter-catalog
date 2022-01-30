@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/models/cart.dart';
+import 'package:myapp/models/catalog.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -11,12 +13,14 @@ import 'package:myapp/widgets/themes.dart';
 
 void main() {
   runApp(VxState(
-    store: MyStore(),
-    child: MyApp(),
+    store: MyStore(Catalog(), Cart()),
+    child: const MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

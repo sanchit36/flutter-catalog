@@ -3,7 +3,6 @@ import 'package:myapp/pages/home/home_detail_page.dart';
 import 'package:myapp/pages/home/widgets/add_to_cart.dart';
 import 'package:myapp/pages/home/widgets/catalog_image.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import 'package:myapp/models/catalog.dart';
 
 class CatalogList extends StatelessWidget {

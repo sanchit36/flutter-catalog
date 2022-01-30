@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/core/store.dart';
 import 'package:myapp/models/cart.dart';
 
 import 'package:velocity_x/velocity_x.dart';
@@ -26,8 +27,7 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
-  final _cart = Cart();
-
+  final Cart _cart = (VxState.store as MyStore).cart;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -62,10 +62,10 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatelessWidget {
-  final _cart = Cart();
-
+  final Cart _cart = (VxState.store as MyStore).cart;
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     return _cart.items.isEmpty
         ? "Noting to Show".text.xl3.makeCentered()
         : ListView.builder(
@@ -74,7 +74,7 @@ class _CartList extends StatelessWidget {
               leading: const Icon(Icons.done),
               trailing: IconButton(
                 onPressed: () {
-                  _cart.remove(_cart.items[index]);
+                  RemoveMutation(_cart.items[index]);
                 },
                 icon: const Icon(Icons.remove_circle_outline),
               ),
