@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:myapp/widgets/themes.dart';
-
 class CatalogImage extends StatelessWidget {
   final String image;
 

@@ -1,8 +1,4 @@
 class Catalog {
-  static final instance = Catalog._internal();
-  Catalog._internal();
-  factory Catalog() => instance;
-
   static List<Item> items = [];
 
   // Get Item by ID

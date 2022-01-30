@@ -5,6 +5,8 @@ class MyDrawer extends StatelessWidget {
   final imageUrl =
       "https://res.cloudinary.com/hqukhe9gx/image/upload/v1/media/about/profile_rzqaqo";
 
+  const MyDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -24,7 +26,7 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(
                 CupertinoIcons.home,
                 color: Colors.white,
@@ -37,7 +39,7 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(
                 CupertinoIcons.profile_circled,
                 color: Colors.white,
@@ -50,7 +52,7 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(
                 CupertinoIcons.mail,
                 color: Colors.white,
